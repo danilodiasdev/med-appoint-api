@@ -1,0 +1,10 @@
+# Ignorar ambiente virtual do uv
+.venv/
+
+# Ignorar configurações do PyCharm
+.idea/
+*.iml
+
+# Ignorar arquivos temporários do Python
+__pycache__/
+*.pyc
