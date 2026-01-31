@@ -1,21 +1,13 @@
-from fastapi import FastAPI
+from starlette.applications import Starlette
+from starlette.responses import JSONResponse
+from starlette.routing import Route
 
-app = FastAPI()
 
-@app.get("/")
-def get_health_status():
-    """
-    Checks the API health status.
-    """
-    return {
-        "status": "online",
-        "manager": "uv",
-        "language": "english"
-    }
+async def homepage(request):
+    return JSONResponse({'home': 'Pagina Inicial'})
 
-@app.get("/appointments")
-def list_appointments():
-    """
-    Placeholder for listing medical appointments.
-    """
-    return {"appointments": []}
+
+app = Starlette(debug=True, routes=[
+    Route('/', homepage),
+])
+
