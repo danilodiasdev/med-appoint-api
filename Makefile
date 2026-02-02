@@ -35,7 +35,7 @@ sync:
 # 3. Development Server
 run:
 	@echo "$(YELLOW)Starting FastAPI server on http://localhost:8000$(NC)"
-	$(UVICORN) app.main:app --reload
+	$(UVICORN) app.api.main:app --reload
 
 # 4. Code Quality: Formatting
 format:
