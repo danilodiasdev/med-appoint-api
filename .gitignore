@@ -1,0 +1,12 @@
+# Ignore the virtual environment of the uv
+
+.env
+.venv/
+
+# Ignore PyCharm configurations
+.idea/
+*.iml
+
+# Ignore Python temporary files
+__pycache__/
+*.pyc
