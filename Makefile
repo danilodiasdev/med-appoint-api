@@ -47,3 +47,40 @@ fmt:
 lint:
 	@echo "$(YELLOW)Linting code...$(NC)"
 	$(RUFF) check .
+
+
+# --- Docker Commands ---
+
+# Sobe os containers em background (-d)
+docker-up:
+	@echo "$(YELLOW)Starting Docker containers...$(NC)"
+	docker-compose up -d
+
+# Para e remove os containers
+docker-down:
+	@echo "$(YELLOW)Stopping Docker containers...$(NC)"
+	docker-compose down
+
+# Mostra os logs do banco de dados em tempo real
+docker-logs:
+	docker-compose logs -f
+
+# Para tudo e remove containers, redes e o banco de dados (CUIDADO: apaga os dados!)
+docker-reset:
+	@echo "$(YELLOW)Cleaning up and removing all containers and volumes...$(NC)"
+	docker compose down -v
+	@echo "$(YELLOW)Starting a fresh environment...$(NC)"
+	docker compose up -d
+	@echo "$(YELLOW)Done! Your database is clean and running.$(NC)"
+
+# Apenas limpa sem subir de novo
+docker-clean:
+	docker compose down -v --remove-orphans
+
+# --- Cleanup ---
+clean:
+	@echo "$(YELLOW)Cleaning up cache files...$(NC)"
+	rm -rf .ruff_cache .venv .pytest_cache
+	find . -type d -name "__pycache__" -exec rm -rf {} +
+
+
