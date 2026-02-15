@@ -1,4 +1,6 @@
 # Ignore the virtual environment of the uv
+
+.env
 .venv/
 
 # Ignore PyCharm configurations
