@@ -38,7 +38,7 @@ run:
 	$(UVICORN) app.api.main:app --reload
 
 # 4. Code Quality: Formatting
-format:
+fmt:
 	@echo "$(YELLOW)Formatting code with Ruff...$(NC)"
 	$(RUFF) format .
 	$(RUFF) check --fix .
