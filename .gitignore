@@ -3,6 +3,8 @@
 .env
 .venv/
 
+.DS_Store
+
 # Ignore PyCharm configurations
 .idea/
 *.iml
@@ -10,3 +12,12 @@
 # Ignore Python temporary files
 __pycache__/
 *.pyc
+
+# Log
+*.log
+*.retry
+
+
+# Ignore deploy data
+deploy/ansible/group_vars/all.yml
+deploy/ansible/secrets.yml

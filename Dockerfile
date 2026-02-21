@@ -38,6 +38,8 @@ USER appuser
 # Porta que sua API FastAPI/Django costuma usar
 EXPOSE 8000
 
+HEALTHCHECK --interval=30s --timeout=5s --start-period=5s --retries=3 \
+  CMD curl -f http://localhost:8000/health || exit 1
+
 # Comando para rodar a aplicação (ajuste conforme seu arquivo principal)
-# Se for FastAPI: CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
-CMD ["python", "main.py"]
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]

@@ -1,0 +1,50 @@
+---
+- name: Configure Nginx as Reverse Proxy
+  hosts: all
+  become: yes
+
+  vars:
+    server_hostname: "my-api.local"
+    app_port: 8000
+
+  tasks:
+    - name: 1. Install Nginx
+      ansible.builtin.package:
+        name: nginx
+        state: present
+
+    - name: 1.1 Create Nginx directory structure
+      ansible.builtin.file:
+        path: "/etc/nginx/{{ item }}"
+        state: directory
+        mode: '0755'
+      loop:
+        - sites-available
+        - sites-enabled
+
+    - name: 2. Deploy Nginx configuration from template
+      ansible.builtin.template:
+        src: templates/nginx.conf.j2
+        dest: "/etc/nginx/sites-available/{{ app_name }}"
+        mode: '0644'
+#        validate: nginx -t -c %s
+      notify: Reload Nginx
+
+    - name: 2.1 Enable Nginx site configuration
+      ansible.builtin.file:
+        src: "/etc/nginx/sites-available/{{ app_name }}"
+        dest: "/etc/nginx/sites-enabled/{{ app_name }}"
+        state: link
+        force: yes
+
+    - name: 3. Ensure Nginx is started and enabled
+      ansible.builtin.service:
+        name: nginx
+        state: started
+        enabled: yes
+
+  handlers:
+    - name: Reload Nginx
+      ansible.builtin.service:
+        name: nginx
+        state: reloaded

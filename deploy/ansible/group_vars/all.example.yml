@@ -1,0 +1,5 @@
+# Global variables for all environments
+app_name: "APP_NAME"
+app_port: "0000"
+server_hostname: "SERVER_HOST_NAME"
+deploy_path: "DEPLOY_PATH"
