@@ -32,9 +32,8 @@ class SchedulingSaved(BaseScheduling):
     pass
 
 
-# TODO: resolver confito entra sqlalchemy e sqlmodel
+# TODO: resolver conflito entra sqlalchemy e sqlmodel
 class Scheduling(SQLModel, table=True):
-    id: int
     client_name: str
     client_cpf: str
     client_email: str

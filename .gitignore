@@ -10,6 +10,3 @@
 # Ignore Python temporary files
 __pycache__/
 *.pyc
-
-# Alembic
-.alembic/
